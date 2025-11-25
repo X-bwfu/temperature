@@ -96,11 +96,10 @@ def get_weather():
     """
     沈阳天气API接口
     """
-    API_KEY = "d8fa0872d4519940b285ea84ab8386ad"
-    # API_KEY = os.getenv("OPENWEATHER_API_KEY")
+    API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
-    # if not API_KEY:
-    #     return jsonify({"error": "Weather API key not configured"}), 500
+    if not API_KEY:
+        return jsonify({"error": "Weather API key not configured"}), 500
 
     weather_data = get_shenyang_weather(API_KEY)
     
