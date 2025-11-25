@@ -207,7 +207,7 @@
           
           <div class="factory-pipeline-3d">
             <div class="scene-container" ref="sceneContainer">
-              <img src="temperature_measuring\src\views\工厂.jpg" class="factory-map" alt="工厂地图">
+              <img src="./工厂.jpg" class="factory-map" alt="工厂地图">
             </div>
             
             <!-- 加载状态 -->
