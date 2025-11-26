@@ -167,6 +167,35 @@ import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import axios from 'axios';
 import { ElMessageBox } from 'element-plus'
+interface DataBlock {
+  content: string;
+  loading: boolean;
+}
+
+const datas: Record<string, DataBlock> = {
+  endpoint: { content: '', loading: false },
+  edge: { content: '', loading: false },
+  cloud: { content: '', loading: false },
+  trend: { content: '', loading: false },
+  alert: { content: '', loading: false }
+};
+
+type PanelKey = 'endpoint' | 'edge' | 'cloud' | 'trend' | 'alert'
+
+interface PanelItem {
+  content: string
+  loading: boolean
+}
+
+const dataPanels: Record<PanelKey, PanelItem> = {
+  endpoint: { content: '', loading: false },
+  edge: { content: '', loading: false },
+  cloud: { content: '', loading: false },
+  trend: { content: '', loading: false },
+  alert: { content: '', loading: false },
+}
+
+const currentPanel = ref<PanelKey>('endpoint')
 
 const router = useRouter();
 
