@@ -174,15 +174,13 @@ interface PanelItem {
   loading: boolean
 }
 
-const dataPanels: Record<PanelKey, PanelItem> = {
-  endpoint: { content: '', loading: false },
-  edge: { content: '', loading: false },
-  cloud: { content: '', loading: false },
-  trend: { content: '', loading: false },
-  alert: { content: '', loading: false },
-}
-
-const currentPanel = ref<PanelKey>('endpoint')
+const aiAnalysisData = ref<Record<PanelKey, PanelItem>>({
+  endpoint: { content: '加载中...', loading: false },
+  edge: { content: '加载中...', loading: false },
+  cloud: { content: '加载中...', loading: false },
+  trend: { content: '加载中...', loading: false },
+  alert: { content: '加载中...', loading: false }
+})
 
 const router = useRouter();
 
@@ -199,13 +197,9 @@ const alertStats = ref({
   totalCount: 0
 });
 
-const aiAnalysisData = ref({
-  endpoint: { content: '加载中...', loading: false },
-  edge: { content: '加载中...', loading: false },
-  cloud: { content: '加载中...', loading: false },
-  trend: { content: '加载中...', loading: false },
-  alert: { content: '加载中...', loading: false }
-});
+
+
+
 
 const loading = ref(false);
 const localImages = [
@@ -307,7 +301,7 @@ const fetchAllStatistics = async () => {
 };
 
 // 获取AI分析数据的函数
-const fetchAIAnalysis = async (module: string) => {
+const fetchAIAnalysis = async (module: PanelKey) => {
   aiAnalysisData.value[module].loading = true;
   try {
     const response = await axios.get(`http://127.0.0.1:8080/api/ai/analyzeTemperature/${module}`);
@@ -322,7 +316,7 @@ const fetchAIAnalysis = async (module: string) => {
 
 // 获取所有AI分析数据
 const fetchAllAIAnalysis = async () => {
-  const modules = ['endpoint', 'edge', 'cloud', 'trend', 'alert'];
+  const modules: PanelKey[] = ['endpoint', 'edge', 'cloud', 'trend', 'alert'];
   await Promise.all(modules.map(module => fetchAIAnalysis(module)));
 };
 
