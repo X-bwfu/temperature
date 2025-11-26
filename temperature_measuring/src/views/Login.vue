@@ -138,7 +138,7 @@ function login(){
   .then(res => {
     if(res.data === "Login successful"){
       // 登录成功，存储用户信息到公共变量
-      store.setUserInfo(uname.value, upwd.value, uname.value, ''); 
+      store.setUserInfo(uname.value, upwd.value,""); 
       console.log("登录成功:", store.uname);
       ElMessage.success("登录成功");
       router.push("/first");

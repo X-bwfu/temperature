@@ -7,7 +7,7 @@ export const useUserStore = defineStore('myuser', () => {  // 修正拼写错误
   const uemail = ref(localStorage.getItem('uemail') || "")  // 改为 uemail
   
   // 去掉 uid，统一使用 uname
-  const setUserInfo = (newUname, newUpwd, newUemail) => {
+  const setUserInfo = (newUname: string, newUpwd: string, newUemail: string) => {
     uname.value = newUname;
     upwd.value = newUpwd;
     uemail.value = newUemail;
